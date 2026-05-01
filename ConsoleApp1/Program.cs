@@ -39,20 +39,15 @@
             fileStream.Close();
         }
 
-        private bool Guessing(uint min,uint max,int maxCount=0)
+        private bool Guessing(int min,int max,int maxCount=0)
         {
             uint count = 0;
+            int goal=new Random().Next(min,max),num;
             while (true)
             { 
+                
             }
-            if (maxCount == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return (count < maxCount);
-            }
+            return (maxCount == 0 ? true : (count < maxCount));
         }
     }
 
