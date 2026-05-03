@@ -4,15 +4,17 @@ namespace NumberBomb;
 class Game
 {
     FileStream fileStream = new FileStream("./save.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-    GameState gameState = GameState.Console;
+    GameState gameState;
+    const string HELP_DOC = "help\n" +
+        "exit\n" +
+        "login\n";
     public void Initialize()
     {
-
+        gameState = GameState.Console;
     }
     public int Mainloop()
     {
-        Guessing(0, 100);
-        return 0;
+        return HandleCammand(Shell.ReadLine());
     }
 
     public void Finalize()
@@ -46,5 +48,35 @@ class Game
             }
         }
         return (maxCount == 0 ? true : (count < maxCount));
+    }
+
+    private int HandleCammand(string[] cmd)
+    {
+        switch (cmd[0])
+        {
+            case "exit":
+                try
+                {
+                    return int.Parse(cmd[1]);
+                }
+                catch
+                {
+                    return 0;
+                }
+            case "game":
+                Console.Clear();
+                Guessing(0, 100);
+                break;
+            case "login":
+                Console.WriteLine("Under building");
+                break;
+            case "help":
+                Console.WriteLine(HELP_DOC);
+                break;
+            default:
+                Console.WriteLine(cmd[0]+":Command not found");
+                return -1;
+        }
+        return 1;
     }
 }

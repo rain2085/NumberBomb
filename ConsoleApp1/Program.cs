@@ -9,15 +9,7 @@ internal class Program
     {
         Game game = new Game();
         game.Initialize();
-        int res;
-        while (true)
-        {
-            res = game.Mainloop();
-            if (res == 0)
-            {
-                break;
-            }
-        }
+        while (true){ if (game.Mainloop() == 0){ break; } }
         game.Finalize();
     }
 }

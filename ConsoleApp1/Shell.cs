@@ -3,6 +3,12 @@ namespace NumberBomb;
 
 static class Shell
 {
+    public static string[] builtin_commands =
+    {
+        "exit",
+        "game",
+        "login"
+    };
     public static int GetNum(string prompt = "")
     {
         do
@@ -17,7 +23,7 @@ static class Shell
             }
             else
             {
-                Console.Clear();
+                ClearAfterShow("起来重输");
                 continue;
             }
         } while (true);
@@ -27,5 +33,16 @@ static class Shell
         Console.WriteLine(message);
         Thread.Sleep(delay);
         Console.Clear();
+    }
+
+    public static string[] ReadLine(string prompt = "")
+    {
+        do
+        {
+            Console.Write(prompt);
+            string? line = Console.ReadLine();
+            if (line == null) { continue; }
+            else { return line.Split(" "); }
+        } while (true);
     }
 }

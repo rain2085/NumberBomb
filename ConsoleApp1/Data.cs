@@ -21,3 +21,12 @@ enum GameState
     Console,
     Gaming
 }
+
+enum Difficulty
+{
+    Easy,
+    Midium,
+    Hard,
+    Expert,
+    Custom
+}
